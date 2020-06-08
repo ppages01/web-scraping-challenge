@@ -10,6 +10,8 @@ import time
 from splinter import Browser
 from bs4 import BeautifulSoup as bs
 from requests import get
+from dotenv import load_dotenv
+load_dotenv()
 
 hemisphere_image_urls = []
 
@@ -57,10 +59,10 @@ def featuredimage():
     return(featured_image_url)
 
 def getTweety():
-    consumer_key = "8RkYN4Gha43R0ij5LKqaoa2DH"
-    consumer_secret = "jCh8hjszH9D4uFAhmvgLUjNBIHTFD5TK4rjzRun1vgTmlk3iJv"
-    access_token = "1251601787779457024-dE6kUlvWltsrCXeFx2c9fxdVtantF2"
-    access_token_secret = "ajB1jC15YlJp7eqaOqcQRSP6EFT1KRKr4URomcxOJ40ei"
+    consumer_key = os.environ.get('twitter_key')
+    consumer_secret = os.environ.get('twitter_secret')
+    access_token = os.environ.get('twitter_token')
+    access_token_secret = os.environ.get('twitter_token_secret')
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     api = tweepy.API(auth,wait_on_rate_limit=True)
